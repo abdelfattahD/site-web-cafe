@@ -16,6 +16,9 @@
 
     <!-- Custom CSS -->
     <link href="css/business-casual.css" rel="stylesheet">
+    <!-- readMore CSS -->
+    <link href="css/readMore.css" rel="stylesheet">
+
 
     <!-- Fonts -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
@@ -32,6 +35,7 @@
 
 <body>
 
+
     <div class="brand">The Perfect Cup</div>
     <div class="address-bar">3481 Melrose Place | Beverly Hills, CA 90210 | 123.456.7890</div>
 
@@ -39,6 +43,7 @@
     <?php include 'Navbar.php';?>
 
 
+    <div id="overlay" class="cover ">
 
     <div class="container">
 
@@ -58,7 +63,8 @@
                         <small>October 13, 2013</small>
                     </h2>
                     <p>Start your morning off with this great recipe for hot coffee with coconut oil and butter.</p>
-                    <a href="#" class="btn btn-default btn-lg">Read More</a>
+            
+                    <button class="btn btn-Read btn-lg">Read More</button>
                      <hr>
                 </div>
                 <div class="col-lg-12 text-center">
@@ -143,7 +149,7 @@
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			</div>
 		</div>
-	</div>
+    </div>
     <footer>
         <div class="container">
             <div class="row">
@@ -152,7 +158,26 @@
                 </div>
             </div>
         </div>
+
     </footer>
+    
+</div>
+   
+
+    </div>
+
+    <div class="row pop-up">
+  <div class="box small-6 large-centered">
+    <a href="#" class="close-button">&#10006;</a>
+    <h3>COCONUT OIL COFFEE</h3>
+    <p>Start your morning off with this great recipe for hot coffee with coconut oil and butter.</p>
+    <p>Maecenas lacus nisi, pellentesque a congue vel, rhoncus sit amet lacus. Sed mattis ultrices risus in tincidunt.</p>
+    <a href="#" class="button">Ajouter au panier</a>
+  </div>
+  </div>
+  
+  
+  
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
@@ -161,5 +186,27 @@
     <script src="js/bootstrap.min.js"></script>
 
 </body>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+ $('.pop-up').hide();
+
+$('.btn-Read').click(function() {
+  $('.btn-Read').hide();
+  $('#overlay').addClass('blur-in');
+  $('.pop-up').fadeIn(1000);
+  
+      $('.close-button').click(function (e) { 
+        $('.btn-Read').fadeIn();
+      $('.pop-up').fadeOut(700);
+      $('#overlay').removeClass('blur-in');
+      $('#overlay').addClass('blur-out');
+      e.stopPropagation();
+        
+    });
+ });
+
+</script>
 
 </html>
