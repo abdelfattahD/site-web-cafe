@@ -16,8 +16,7 @@
 
     <!-- Custom CSS -->
     <link href="css/business-casual.css" rel="stylesheet">
-    <!-- readMore CSS -->
-    <link href="css/readMore.css" rel="stylesheet">
+  
 
 
     <!-- Fonts -->
@@ -43,7 +42,6 @@
     <?php include 'Navbar.php';?>
 
 
-    <div id="overlay" class="cover ">
 
     <div class="container">
 
@@ -64,7 +62,7 @@
                     </h2>
                     <p>Start your morning off with this great recipe for hot coffee with coconut oil and butter.</p>
             
-                    <button class="btn btn-Read btn-lg">Read More</button>
+                    <button id="button1" class="btn btn-default btn-lg">Read More</button>
                      <hr>
                 </div>
                 <div class="col-lg-12 text-center">
@@ -74,7 +72,7 @@
                         <small>October 13, 2013</small>
                     </h2>
                     <p>Take the edge off with a fresh hot cup of coffee make with Irish whiskey and Irish cream.</p>
-                    <a href="#" class="btn btn-default btn-lg">Read More</a>
+                    <button id="button2" class="btn btn-default btn-lg">Read More</button>
                      <hr>
                 </div>
                 <div class="col-lg-12 text-center">
@@ -84,7 +82,7 @@
                         <small>October 13, 2013</small>
                     </h2>
                     <p>Sweetened with caramel sauce and topped with whipped cream, this will make you happy any time of the day.</p>
-                    <a href="#" class="btn btn-default btn-lg">Read More</a>
+                    <button id="button3" class="btn btn-default btn-lg">Read More</button>
                     <hr>
                 </div>
                 <div class="col-lg-12 text-center">
@@ -112,7 +110,7 @@
 				<p>Sample Text</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="close" class="btn btn-default" data-dismiss="modal">Close</button>
 			</div>
 		</div>
 	</div>
@@ -129,7 +127,7 @@
 				<p>Sample Text</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="close" class="btn btn-default" data-dismiss="modal">Close</button>
 			</div>
 		</div>
 	</div>
@@ -146,7 +144,7 @@
 				<p>Sample Text</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn close" data-dismiss="modal">Close</button>
 			</div>
 		</div>
     </div>
@@ -164,19 +162,6 @@
 </div>
    
 
-    </div>
-
-    <div class="row pop-up">
-  <div class="box small-6 large-centered">
-    <a href="#" class="close-button">&#10006;</a>
-    <h3>COCONUT OIL COFFEE</h3>
-    <p>Start your morning off with this great recipe for hot coffee with coconut oil and butter.</p>
-    <p>Maecenas lacus nisi, pellentesque a congue vel, rhoncus sit amet lacus. Sed mattis ultrices risus in tincidunt.</p>
-    <a href="#" class="button">Ajouter au panier</a>
-  </div>
-  </div>
-  
-  
   
 
     <!-- jQuery -->
@@ -190,18 +175,40 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
- $('.pop-up').hide();
+     
+ 
+ var model = '' ; // Tracks model of prodact
 
-$('.btn-Read').click(function() {
-  $('.btn-Read').hide();
-  $('#overlay').addClass('blur-in');
-  $('.pop-up').fadeIn(1000);
+ let btn_1 = document.querySelector(".btn");  // select button read more
+ 
+// select model of prodact
+
+ document.getElementById('button1').addEventListener("click", function() {
+    model =$('#myModal'); 
+});
+
+document.getElementById('button2').addEventListener("click", function() {
+    model =$('#myModal2'); 
+});
+document.getElementById('button3').addEventListener("click", function() {
+    model =$('#myModal3'); 
+});
+
+// Displays read more
+ $('.btn').click(function() {
+
   
-      $('.close-button').click(function (e) { 
+model.addClass('modal in');
+  $('.modal-dialog').addClass('modal-content');
+  model.css("display", "block");
+
+  
+      $('.close').click(function (e) { 
         $('.btn-Read').fadeIn();
-      $('.pop-up').fadeOut(700);
-      $('#overlay').removeClass('blur-in');
-      $('#overlay').addClass('blur-out');
+    
+        model.removeClass('modal in');
+        model.addClass('modal fade');
+        model.css("display", "none");
       e.stopPropagation();
         
     });
