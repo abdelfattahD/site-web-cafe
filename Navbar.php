@@ -1,3 +1,5 @@
+<? session_start(); ?>
+
 <nav class="navbar navbar-default" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -26,6 +28,29 @@
                     <li>
                         <a href="contact.php">Contact</a>
                     </li>
+                    <?php 
+                        
+                        if (isset($_SESSION['id'])) {
+
+                           
+                            echo "<li>";
+                            echo "<a href='Logout.php'>Logout</a>";
+                            echo "</li>";
+
+                        }else{
+
+                            echo "<li>";
+                            echo "<a href='Login.php'>Login</a>";
+                            echo "</li>";
+
+                            echo "<li>";
+                            echo "<a href='regster.php'>Register</a>";
+                            echo "</li>";
+                           
+                        }
+                    
+                    ?>
+                    
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

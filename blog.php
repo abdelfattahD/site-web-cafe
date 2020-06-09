@@ -1,3 +1,19 @@
+
+<?php include "db/connec.php"; ?>
+<? session_start(); ?>
+
+
+<?php
+
+if (isset( $_SESSION['id'])) {
+    $fname = $_SESSION['fname'];
+    $lname = $_SESSION['lname'];
+
+
+    //  $full_name = $fname . " " . $lname;
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,12 +26,15 @@
     <meta name="author" content="">
 
     <title>The Perfect Cup - Blog</title>
-
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/business-casual.css" rel="stylesheet">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/login.css" rel="stylesheet">
+
   
 
 
@@ -43,7 +62,7 @@
 
 
 
-    <div class="container">
+    <div class="container" id="containerB" >
 
         <div class="row">
             <div class="box">
@@ -171,6 +190,7 @@
     <script src="js/bootstrap.min.js"></script>
 
 </body>
+<script src="js/log.js"></script>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -197,19 +217,17 @@ document.getElementById('button3').addEventListener("click", function() {
 // Displays read more
  $('.btn').click(function() {
 
-  
-model.addClass('modal in');
+
   $('.modal-dialog').addClass('modal-content');
   model.css("display", "block");
+  model.addClass('modal in');
 
   
-      $('.close').click(function (e) { 
-        $('.btn-Read').fadeIn();
+      $('.close').click(function () { 
     
         model.removeClass('modal in');
         model.addClass('modal fade');
         model.css("display", "none");
-      e.stopPropagation();
         
     });
  });
@@ -217,3 +235,12 @@ model.addClass('modal in');
 </script>
 
 </html>
+<?php
+
+}
+else {
+    
+    header("location:login.php");
+}
+
+?>
