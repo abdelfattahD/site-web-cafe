@@ -13,7 +13,6 @@ body {
     -o-background-size: cover;
 }
 
-
 h1,
 h2,
 h3,
@@ -77,30 +76,11 @@ hr {
     max-width: 250px;
     border-color: #999999;
 }
-.error-email, .error-pass, .error-cpass, .error-Fname , .error-Lname {
-    position: absolute; 
-    top: 5px; 
-    padding: 5px 10px; 
-    right: 0; 
-    color: white; 
-    background-color: #66e8dc; 
-    border-radius: 10px;
-  }
-  .triangle {
-    width: 0; 
-    height: 0; 
-    border-left: 10px solid transparent; 
-    border-right: 10px solid transparent; 
-    border-top: 10px solid #66e8dc; 
-    position: absolute; 
-    right: 18px; 
-    bottom: -8px;
-  }
 
 .box {
     margin-bottom: 20px;
     padding: 30px 15px;
- 
+    background: #fff;
     background: rgba(255,255,255,0.9);
 }
 
@@ -188,10 +168,6 @@ footer p {
 
     .nav>li>a {
         padding: 35px;
-    }
-
-    .nav>li>button {
-        margin-top: 27px;
     }
 
     .navbar-nav>li>a {

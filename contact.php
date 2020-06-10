@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,9 +38,76 @@
     <div class="address-bar">3481 Melrose Place | Beverly Hills, CA 90210 | 123.456.7890</div>
 
     <!-- Navigation -->
-    <?php include 'Navbar.php';?>
+    <?php include 'nav.php' ?>
+    <?php
+        
 
+        $alert = "";
+        if (isset($_POST['contact'])) {
+            $fname = $_POST['fname'];
+            $email = $_POST['email'];
+            $message = $_POST['message'];
+            $subject = $_POST['subject'];
+            $mailTo = "abdel.rochdi96@gmail.com";
+            $headers = "From :". $email;
+            $txt = "you have received an e-mail from ".$fname." ".$email.".\n\n".$message;
 
+            if (strlen($fname)<2){
+
+                $alert = "<div class='alert alert-danger'>your first name is too short</div>";
+    
+            }else if (strlen($subject)<2){
+
+                $alert = "<div class='alert alert-danger'>your subject is too short</div>";
+    
+            }else if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+
+                $alert = "<div class='alert alert-danger'>your email format is invalid</div>";
+    
+            }else if ($message == ""){
+
+                $alert = "<div class='alert alert-danger'>message field should not be empty</div>";
+    
+            }else{
+
+                require 'PHPMailer/PHPMailerAutoload.php';
+
+                    $mail = new PHPMailer;
+
+                    //$mail->SMTPDebug = 3;                               // Enable verbose debug output
+
+                    $mail->isSMTP();                                      // Set mailer to use SMTP
+                    $mail->Host = 'smtp.gmail.com;';  // Specify main and backup SMTP servers
+                    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+                    $mail->Username = 'phptestmail78@gmail.com';                 // SMTP username
+                    $mail->Password = '1234AZER';                           // SMTP password
+                    $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+                    $mail->Port = 587;                                    // TCP port to connect to
+
+                    $mail->setFrom($email);
+                    $mail->addAddress('abdel.rochdi96@gmail.com');     // Add a recipient
+                 
+
+                    
+                    $mail->isHTML(true);                                  // Set email format to HTML
+
+                    $mail->Subject = $subject;
+                    $mail->Body    = $txt;
+                   
+
+                    if(!$mail->send()) {
+                        echo 'Message could not be sent.';
+                        echo 'Mailer Error: ' . $mail->ErrorInfo;
+                    } else {
+                        $alert = "<div class='alert alert-success'>your message has been sent successfully</div>";
+                    }
+            }
+
+            
+        }
+    
+    
+    ?>
     <div class="container">
 
         <div class="row">
@@ -64,7 +132,7 @@
                     </p>
                     <p>Address:
                         <strong>3481 Melrose Place
-                            <br>Beverly Hills, CA 90210</strong>
+                            <br>Beverly Hills, CA 90210 <?php echo $alert; ?></strong>
                     </p>
                 </div>
                 <div class="clearfix"></div>
@@ -78,9 +146,10 @@
                     <h2 class="intro-text text-center">Contact
                         <strong>form</strong>
                     </h2>
+                    
                     <hr>
                     <div id="add_err2"></div>
-                    <form role="form">
+                    <form role="form" action ="contact.php" method = "post">
                         <div class="row">
                             <div class="form-group col-lg-4">
                                 <label>Name</label>
@@ -90,13 +159,17 @@
                                 <label>Email Address</label>
                                 <input type="email" id="email" name="email" maxlength="25" class="form-control">
                             </div>
+                            <div class="form-group col-lg-4">
+                                <label>Subject</label>
+                                <input type="text" id="subject" name="subject" maxlength="25" class="form-control">
+                            </div>
                             <div class="clearfix"></div>
                             <div class="form-group col-lg-12">
                                 <label>Message</label>
                                 <textarea class="form-control" id="message" name="message" maxlength="100" rows="6"></textarea>
                             </div>
                             <div class="form-group col-lg-12">
-                                <button type="submit" id="contact" class="btn btn-default">Submit</button>
+                                <button type="submit" id="contact" name="contact" class="btn btn-default">Submit</button>
                             </div>
                         </div>
                     </form>

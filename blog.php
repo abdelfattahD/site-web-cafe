@@ -1,18 +1,15 @@
-
-<?php include "db/connec.php"; ?>
-<? session_start(); ?>
-
+<?php include "db.php"; ?>
 
 <?php
 
-if (isset( $_SESSION['id'])) {
+
+session_start();
+if (isset($_SESSION['id'])) {
     $fname = $_SESSION['fname'];
     $lname = $_SESSION['lname'];
 
-
-    //  $full_name = $fname . " " . $lname;
+    $full_name = $fname . " " . $lname;
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,17 +23,12 @@ if (isset( $_SESSION['id'])) {
     <meta name="author" content="">
 
     <title>The Perfect Cup - Blog</title>
+
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/business-casual.css" rel="stylesheet">
-
-    <!-- Bootstrap Core CSS -->
-    <link href="css/login.css" rel="stylesheet">
-
-  
-
 
     <!-- Fonts -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
@@ -58,7 +50,7 @@ if (isset( $_SESSION['id'])) {
     <div class="address-bar">3481 Melrose Place | Beverly Hills, CA 90210 | 123.456.7890</div>
 
     <!-- Navigation -->
-    <?php include 'Navbar.php';?>
+    <?php include 'nav.php';?>
 
 
 
@@ -239,7 +231,6 @@ document.getElementById('button3').addEventListener("click", function() {
 
 }
 else {
-    
     header("location:login.php");
 }
 

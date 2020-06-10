@@ -1,5 +1,4 @@
-
-<?php include "db/connec.php"; ?>
+<?php include "db.php"; ?>
 <?php ob_start(); ?>
 
 
@@ -14,7 +13,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-                <a class="navbar-brand" href="index.php">The Perfect Cup</a>
+                <a class="navbar-brand" href="index.html">The Perfect Cup</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -31,19 +30,24 @@
                     <li>
                         <a href="contact.php">Contact</a>
                     </li>
+
                     <?php 
                         
                         if (isset($_SESSION['id'])) {
 
-                           
                             echo "<li>";
-                            echo "<a href='Logout.php'>Logout</a>";
+                            echo "<a href='admin'>Admin</a>";
+                            echo "</li>";
+
+
+                            echo "<li>";
+                            echo "<a href='logout.php'>Logout</a>";
                             echo "</li>";
 
                         }else{
 
                             echo "<li>";
-                            echo "<a href='Login.php'>Login</a>";
+                            echo "<a href='login.php'>Login</a>";
                             echo "</li>";
 
                             echo "<li>";
@@ -54,6 +58,7 @@
                     
                     ?>
                     
+                   
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

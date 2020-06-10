@@ -1,7 +1,3 @@
-<? session_start(); ?>
-
-<?php include "db/connec.php"; ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,17 +10,16 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>The Perfect Cup - Blog</title>
+    <title>The Perfect Cup - Contact</title>
+
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/business-casual.css" rel="stylesheet">
-
+    
     <!-- Bootstrap Core CSS -->
     <link href="css/login.css" rel="stylesheet">
-
-  
 
 
     <!-- Fonts -->
@@ -38,34 +33,33 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+        <!-- <script src="js/script.js" defer></script> -->
 </head>
 
 <body>
-
 
     <div class="brand">The Perfect Cup</div>
     <div class="address-bar">3481 Melrose Place | Beverly Hills, CA 90210 | 123.456.7890</div>
 
     <!-- Navigation -->
-    <?php include 'Navbar.php';?>
+    <?php include 'nav.php' ?>
 
-    <?php
+<?php
+session_start();
     $messageL = "";
 if (isset($_POST['login'])) {
-  
 
     
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-   
-    $query = "SELECT * FROM users WHERE Email = '{$email}'";
-    $login_query = mysqli_query($mysqli,$query);
+    
 
+    $query = "SELECT * FROM users WHERE Email = '{$email}'";
+    $login_query = mysqli_query($connection,$query);
 
     if (!$login_query) {
-        die("QUERY FAILED" . mysqli_error($mysqli));
-       
+        die("QUERY FAILED" . mysqli_error($connection));
     }
 
     while($row = mysqli_fetch_assoc($login_query)){
@@ -81,22 +75,21 @@ if (isset($_POST['login'])) {
         $messageL = "<div class='alert alert-danger'>this email does not exist, try again or <a href='register.php'>register</a> </div>";;
     }else {
         if ($password=== $hash) {
+             $messageL = "<div class='alert alert-success'>Welcome $db_fname </div>";
             $_SESSION['id'] = $db_id;
             $_SESSION['fname'] = $db_fname;
             $_SESSION['lname'] = $db_lname;
+            $messageL =  "<div class='alert alert-danger'>correct</div>";
 
-     $db_i =  $_SESSION['id'];
-            $messageL = "<div class='alert alert-success'>Welcome $db_fname  $db_lname test $db_i </div>";
-
-
-           header('Location: blog.php');
+            header('Location: blog.php');
         } else{
-            $messageL =  "<div class='alert alert-danger'>$hash your password $password in incorrect id :$db_id</div>";
+            $messageL =  "<div class='alert alert-danger'>$hash your password $password in incorrect</div>";
         }
     }
     
 
 }
+
 ?>   
 
 
@@ -108,7 +101,7 @@ if (isset($_POST['login'])) {
             <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"><a href="regster.php">Register</a></label>
 
             <div class="login-form">
-                    <form role="form" action ="login.php" method="post">
+                    <form role="form"  method="post">
                 <div class="sign-in-htm">
                     <div class="group">
                     <label for="pass"  class="label">Email Address</label>
@@ -133,6 +126,8 @@ if (isset($_POST['login'])) {
     </div>
     </div>
     </div>
+    <!-- /.container -->
+
     <footer>
         <div class="container">
             <div class="row">
@@ -141,14 +136,11 @@ if (isset($_POST['login'])) {
                 </div>
             </div>
         </div>
-
     </footer>
-    
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
 </body>
-<!--<script src="js/log.js"></script>-->
+
+</html>

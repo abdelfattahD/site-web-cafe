@@ -1,4 +1,4 @@
-<?php include "db/connec.php"; ?>
+<?php include "db.php"; ?>
 <? session_start(); ?>
 
 
@@ -46,7 +46,7 @@
     <div class="address-bar">3481 Melrose Place | Beverly Hills, CA 90210 | 123.456.7890</div>
 
     <!-- Navigation -->
-    <?php include 'Navbar.php';?>
+    <?php include 'nav.php';?>
 
  
 <?php
@@ -61,16 +61,16 @@ if (isset($_POST['submit'])) {
     $password = $_POST['password'];
     $passwordc = $_POST['cpassword'];
 
-    $fname = mysqli_real_escape_string($mysqli,$fname);
-    $lname = mysqli_real_escape_string($mysqli,$lname);
-    $email = mysqli_real_escape_string($mysqli,$email);
-    $password = mysqli_real_escape_string($mysqli,$password);
+    $fname = mysqli_real_escape_string($connection,$fname);
+    $lname = mysqli_real_escape_string($connection,$lname);
+    $email = mysqli_real_escape_string($connection,$email);
+    $password = mysqli_real_escape_string($connection,$password);
 
     
     
 
     $search_query = "SELECT * FROM users WHERE Email = '$email'";
-    $search_result = mysqli_query($mysqli,$search_query);
+    $search_result = mysqli_query($connection,$search_query);
     
     if (strlen($fname)<2){
 
@@ -101,11 +101,11 @@ if (isset($_POST['submit'])) {
     
        
     $query = "INSERT INTO users(fName,LName,Email,passwor) VALUES ('{$fname}','{$lname}','{$email}','{$password}')";
-    $register_query = mysqli_query($mysqli,$query);
+    $register_query = mysqli_query($connection,$query);
     $message = "<div class='alert alert-success'>registration submitted</div>";
     header("Location: login.php");
     if (!$register_query) {
-        die("QUERY FAILED" . mysqli_error($mysqli));
+        die("QUERY FAILED" . mysqli_error($connection));
     }
     }
 
