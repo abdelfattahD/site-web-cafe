@@ -48,7 +48,7 @@
             $email = $_POST['email'];
             $message = $_POST['message'];
             $subject = $_POST['subject'];
-            $mailTo = "abdel.rochdi96@gmail.com";
+            $mailTo = "abdelfatahhaissoun@gmail.com";
             $headers = "From :". $email;
             $txt = "you have received an e-mail from ".$fname." ".$email.".\n\n".$message;
 
@@ -79,13 +79,13 @@
                     $mail->isSMTP();                                      // Set mailer to use SMTP
                     $mail->Host = 'smtp.gmail.com;';  // Specify main and backup SMTP servers
                     $mail->SMTPAuth = true;                               // Enable SMTP authentication
-                    $mail->Username = 'phptestmail78@gmail.com';                 // SMTP username
-                    $mail->Password = '1234AZER';                           // SMTP password
+                    $mail->Username = 'testabdo296@gmail.com';                 // SMTP username
+                    $mail->Password = 'abdotest11Test';                           // SMTP password
                     $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
                     $mail->Port = 587;                                    // TCP port to connect to
 
                     $mail->setFrom($email);
-                    $mail->addAddress('abdel.rochdi96@gmail.com');     // Add a recipient
+                    $mail->addAddress('abdelfatahhaissoun@gmail.com');     // Add a recipient
                  
 
                     

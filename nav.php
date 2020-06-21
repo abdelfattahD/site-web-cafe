@@ -32,11 +32,11 @@
                     </li>
 
                     <?php 
-                        
+
                         if (isset($_SESSION['id'])) {
 
                             echo "<li>";
-                            echo "<a href='admin'>Admin</a>";
+                            echo "<a href='adm/panel.php'>Admin</a>";
                             echo "</li>";
 
 

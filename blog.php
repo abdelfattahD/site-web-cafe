@@ -45,57 +45,93 @@ if (isset($_SESSION['id'])) {
 
 <body>
 
-
     <div class="brand">The Perfect Cup</div>
     <div class="address-bar">3481 Melrose Place | Beverly Hills, CA 90210 | 123.456.7890</div>
 
     <!-- Navigation -->
-    <?php include 'nav.php';?>
 
 
 
-    <div class="container" id="containerB" >
+
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+                <a class="navbar-brand" href="index.html">The Perfect Cup</a>
+            </div>
+              <!-- Navigation -->
+    <?php include 'nav.php' ?>
+
+
+    <div class="container">
 
         <div class="row">
             <div class="box">
                 <div class="col-lg-12">
+                <h2 class="text-center">Welcome <?php echo $full_name?> </h2>
                     <hr>
                     <h2 class="intro-text text-center">The Perfect Cup
                         <strong>blog</strong>
                     </h2>
                     <hr>
                 </div>
+                <?php 
+                            $query = "SELECT * FROM products";
+                            $load_products_query = mysqli_query($connection,$query);
+
+                            if (!$load_products_query) {
+                                die("QUERY FAILED". mysqli_error($connection));
+                            }
+
+                            while ($row = mysqli_fetch_array($load_products_query)) {
+                                $product_id = $row['product_id'];
+                                $product_title = $row['product_name'];
+                                $product_image = $row['product_img'];
+                                $product_desc = $row['product_desc'];
+                                $product_info = $row['product_info'];
+                         
+
+                                ?>
+                        
                 <div class="col-lg-12 text-center">
-                    <img class="img-responsive img-border img-full" src="img/slide-1.jpg" alt="">
-                    <h2>COCONUT OIL COFFEE
+                    <img class="img-responsive img-border img-full" src="img/<?php echo $product_image ?>" alt="<?php echo $product_image ?>">
+                    <h2><?php echo $product_title ?>
                         <br>
-                        <small>October 13, 2013</small>
                     </h2>
-                    <p>Start your morning off with this great recipe for hot coffee with coconut oil and butter.</p>
+                    <p><?php echo $product_desc ?>.</p>
+                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal<?php echo $product_id ?>">Read More</button>
+                    <a href = "admin/cart.php?item=<?php echo $product_id ?>" class="btn btn-success btn-lg" data-dismiss="modal">Add To Cart</a>
+                     <hr>
+                </div>
+                 <!--Modal-1-->
+	<div id="myModal<?php echo $product_id ?>" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+            <!--Modal Content-->
+            <div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss-="modal">&times;</button>
+				<h4 class="modal-title"><?php echo $product_title ?></h4>
+			</div>
+			<div class="modal-body">
+				<p><?php echo $product_info ?></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
             
-                    <button id="button1" class="btn btn-default btn-lg">Read More</button>
-                     <hr>
-                </div>
-                <div class="col-lg-12 text-center">
-                    <img class="img-responsive img-border img-full" src="img/slide-2.jpg" alt="">
-                    <h2>IRISH COFFEE
-                        <br>
-                        <small>October 13, 2013</small>
-                    </h2>
-                    <p>Take the edge off with a fresh hot cup of coffee make with Irish whiskey and Irish cream.</p>
-                    <button id="button2" class="btn btn-default btn-lg">Read More</button>
-                     <hr>
-                </div>
-                <div class="col-lg-12 text-center">
-                    <img class="img-responsive img-border img-full" src="img/slide-3.jpg" alt="">
-                    <h2>FROZEN CARAMEL LATTE
-                        <br>
-                        <small>October 13, 2013</small>
-                    </h2>
-                    <p>Sweetened with caramel sauce and topped with whipped cream, this will make you happy any time of the day.</p>
-                    <button id="button3" class="btn btn-default btn-lg">Read More</button>
-                    <hr>
-                </div>
+            </div>
+		</div>
+	</div>
+                        <?php
+                            }
+                        ?>
+                
                 <div class="col-lg-12 text-center">
                     <ul class="pager">
                         <li class="previous"><a href="#">&larr; Older</a>
@@ -109,56 +145,8 @@ if (isset($_SESSION['id'])) {
 
     </div>
     <!--container -->
-    <!--Modal-1-->
-	<div id="myModal" class="modal fade" role="dialog">
-		<div class="modal-dialog">
-			<!--Modal Content-->
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss-="modal">&times;</button>
-				<h4 class="modal-title">Coconut Oil Coffee</h4>
-			</div>
-			<div class="nodal-body">
-				<p>Sample Text</p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="close" class="btn btn-default" data-dismiss="modal">Close</button>
-			</div>
-		</div>
-	</div>
    
-    <!--Modal-2-->
-	<div id="myModal2" class="modal fade" role="dialog">
-		<div class="modal-dialog">
-			<!--Modal Content-->
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss-="modal">&times;</button>
-				<h4 class="modal-title">Irish Coffee</h4>
-			</div>
-			<div class="nodal-body">
-				<p>Sample Text</p>
-			</div>
-			<div class="modal-footer">
-            <button type="button" class="close" class="btn btn-default" data-dismiss="modal">Close</button>
-			</div>
-		</div>
-	</div>
    
-    <!--Modal-3-->
-	<div id="myModal3" class="modal fade" role="dialog">
-		<div class="modal-dialog">
-			<!--Modal Content-->
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss-="modal">&times;</button>
-				<h4 class="modal-title">Frozen Caramel Latte</h4>
-			</div>
-			<div class="nodal-body">
-				<p>Sample Text</p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn close" data-dismiss="modal">Close</button>
-			</div>
-		</div>
-    </div>
     <footer>
         <div class="container">
             <div class="row">
@@ -167,13 +155,7 @@ if (isset($_SESSION['id'])) {
                 </div>
             </div>
         </div>
-
     </footer>
-    
-</div>
-   
-
-  
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
@@ -182,49 +164,6 @@ if (isset($_SESSION['id'])) {
     <script src="js/bootstrap.min.js"></script>
 
 </body>
-<script src="js/log.js"></script>
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script>
-     
- 
- var model = '' ; // Tracks model of prodact
-
- let btn_1 = document.querySelector(".btn");  // select button read more
- 
-// select model of prodact
-
- document.getElementById('button1').addEventListener("click", function() {
-    model =$('#myModal'); 
-});
-
-document.getElementById('button2').addEventListener("click", function() {
-    model =$('#myModal2'); 
-});
-document.getElementById('button3').addEventListener("click", function() {
-    model =$('#myModal3'); 
-});
-
-// Displays read more
- $('.btn').click(function() {
-
-
-  $('.modal-dialog').addClass('modal-content');
-  model.css("display", "block");
-  model.addClass('modal in');
-
-  
-      $('.close').click(function () { 
-    
-        model.removeClass('modal in');
-        model.addClass('modal fade');
-        model.css("display", "none");
-        
-    });
- });
-
-</script>
 
 </html>
 <?php
