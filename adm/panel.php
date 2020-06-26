@@ -34,7 +34,6 @@ if (isset($_SESSION['idAdmin'])) {
       <li class="dashboard"><a href="admindashboard">Dashboard</a></li>
       <li class="Products"><a href="product_panel.php">Products</a></li>
       <li class="add_Products"><a href="add_prod.php">add Products</a></li>
-      <li class="cart"><a href="#">cart</a></li>
       <li class="users"><a href="panel_users.php">Manage Users</a></li>
     </ul>
   </nav>

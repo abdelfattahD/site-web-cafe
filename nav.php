@@ -30,13 +30,17 @@
                     <li>
                         <a href="contact.php">Contact</a>
                     </li>
-
+                   
                     <?php 
 
                         if (isset($_SESSION['id'])) {
 
                             echo "<li>";
-                            echo "<a href='adm/panel.php'>Admin</a>";
+                            echo "<a href='cart.php'>shop</a>";
+                            echo "</li>";
+
+                            echo "<li>";
+                            echo "<a href='adm/product_panel.php'>Admin</a>";
                             echo "</li>";
 
 

@@ -38,7 +38,7 @@ if (isset($_POST['login'])) {
           
             $messageL =  "<div class='alert alert-danger'>correct</div>";
 
-            header('Location:panel.php');
+            header('Location:product_panel.php');
         } else{
             $messageL =  "<div class='alert alert-danger'>$hash your password $password in incorrect</div>";
         }

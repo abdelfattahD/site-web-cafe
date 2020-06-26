@@ -106,7 +106,7 @@ if (isset($_SESSION['id'])) {
                     </h2>
                     <p><?php echo $product_desc ?>.</p>
                     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal<?php echo $product_id ?>">Read More</button>
-                    <a href = "admin/cart.php?item=<?php echo $product_id ?>" class="btn btn-success btn-lg" data-dismiss="modal">Add To Cart</a>
+                    <a href = "cart.php?item=<?php echo $product_id ?>" class="btn btn-success btn-lg" data-dismiss="modal">Add To Cart</a>
                      <hr>
                 </div>
                  <!--Modal-1-->
